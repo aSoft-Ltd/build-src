@@ -1,1 +1,1 @@
-fun asoft(module: String) = "tz.co.asoft:$module:${versions.asoft}"
+fun asoft(module: String, version: String) = "tz.co.asoft:$module:$version"

@@ -2,7 +2,7 @@ import com.android.build.gradle.BaseExtension
 import org.gradle.api.JavaVersion
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 
-fun BaseExtension.configureAndroid() {
+fun BaseExtension.configureAndroid(dir: String = "src/androidMain") {
 
     compileSdkVersion(28)
 
@@ -17,8 +17,9 @@ fun BaseExtension.configureAndroid() {
 
     sourceSets {
         getByName("main") {
-            manifest.srcFile("src/androidMain/AndroidManifest.xml")
-            res.srcDirs("src/androidMain/resources")
+            java.srcDir("$dir/kotlin")
+            manifest.srcFile("$dir/AndroidManifest.xml")
+            res.srcDirs("$dir/resources")
         }
     }
 

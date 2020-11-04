@@ -1,6 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
+
 plugins {
     kotlin("js")
-    kotlin("plugin.serialization")
     id("maven-publish")
 }
 
@@ -10,7 +11,7 @@ repositories {
     publicRepos()
 }
 
-kotlin {
+configure<KotlinJsProjectExtension> {
     target {
         useCommonJs()
     }

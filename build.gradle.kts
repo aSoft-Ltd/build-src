@@ -4,26 +4,20 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
     google()
     jcenter()
     mavenCentral()
-    maven("https://maven.jetbrains.space/asofttz/kotlin") {
-        credentials {
-            username = System.getenv("SPACE_USERNAME")
-            password = System.getenv("SPACE_PASSWORD")
-        }
-    }
 }
 
 object versions {
     const val kotlin = "1.3.72"
-    const val asoft = "0.1.0-dev-20"
     const val gradle = "6.1.1"
     const val android_build_tools = "4.0.0"
 }
 
 group = "tz.co.asoft"
-version = versions.asoft
+version = "1.0.0"
 
 defaultTasks("jar")
 
@@ -44,7 +38,6 @@ artifacts {
 dependencies {
     api("com.android.tools.build:gradle:${versions.android_build_tools}")
     api("org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}")
-    api("org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}")
 }
 
 tasks.getByName<Wrapper>("wrapper") {

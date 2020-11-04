@@ -1,9 +1,9 @@
 import com.android.build.gradle.LibraryExtension
 
 plugins {
-    kotlin("plugin.serialization")
-    kotlin("android")
     id("com.android.library")
+    kotlin("android")
+    id("maven-publish")
 }
 
 group = "tz.co.asoft"
@@ -15,6 +15,12 @@ repositories {
 targetJava("1.8")
 
 configure<LibraryExtension> {
-    configureAndroid()
+    configureAndroid(dir = "src/main")
 }
+
+val androidSourcesJar by tasks.creating(org.gradle.jvm.tasks.Jar::class) {
+    archiveClassifier.value("sources")
+    from(android.sourceSets["main"].java.srcDirs)
+}
+
 configurePublishing()
