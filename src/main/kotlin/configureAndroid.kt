@@ -1,12 +1,12 @@
-plugins {
-    id("com.android.library")
-}
+import com.android.build.gradle.BaseExtension
+import org.gradle.api.JavaVersion
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 
-android {
+fun BaseExtension.configureAndroid() {
 
     compileSdkVersion(28)
 
-    buildFeatures {
+    buildFeatures.apply {
         buildConfig = false
     }
 
@@ -43,5 +43,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+fun KotlinAndroidTarget.targetJava(version: String = "1.8") = compilations.all {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }

@@ -1,6 +1,10 @@
 plugins {
     kotlin("js")
+    kotlin("plugin.serialization")
+    id("maven-publish")
 }
+
+group = "tz.co.asoft"
 
 repositories {
     publicRepos()
@@ -11,3 +15,5 @@ kotlin {
         useCommonJs()
     }
 }
+
+configurePublishing()

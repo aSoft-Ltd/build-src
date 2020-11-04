@@ -1,3 +1,3 @@
 import org.gradle.api.attributes.Attribute
 
-val framework = Attribute.of("tz.co.asoft.framework", String::class.java)
+val platform = Attribute.of("tz.co.asoft.platform", String::class.java)

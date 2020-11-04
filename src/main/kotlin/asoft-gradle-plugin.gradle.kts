@@ -1,5 +1,4 @@
 plugins {
-    id("space-maven")
     kotlin("jvm")
     id("java")
     id("java-gradle-plugin")
@@ -8,6 +7,8 @@ plugins {
 repositories {
     publicRepos()
 }
+
+group = "tz.co.asoft"
 
 defaultTasks("jar")
 
@@ -26,7 +27,5 @@ artifacts {
 }
 
 dependencies {
-//    api(gradleApi())
-//    api(localGroovy())
-    api("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
+    api("org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}")
 }
