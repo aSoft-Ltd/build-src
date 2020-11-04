@@ -1,0 +1,1 @@
+fun asoft(module: String) = "tz.co.asoft:$module:${versions.asoft}"
