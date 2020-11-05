@@ -38,6 +38,7 @@ artifacts {
 dependencies {
     api("com.android.tools.build:gradle:${versions.android_build_tools}")
     api("org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}")
+    api("org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}")
 }
 
 tasks.getByName<Wrapper>("wrapper") {
