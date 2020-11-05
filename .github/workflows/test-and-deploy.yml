@@ -48,6 +48,6 @@ jobs:
 
       - name: Building samples/mpp-library
         run: |
-          chmod +x ./gradlew build
+          chmod +x ./gradlew
           ./gradlew build
         working-directory: ./samples/mpp-library
