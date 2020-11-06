@@ -9,7 +9,7 @@ Adds the `kotlin("multiplatform")` plugin and `maven-central` to help you write 
 #### Usage
 ```kotlin
 plugins {
-  id("mpp-lib")
+  id("tz.co.asoft.gradle-plugin.lib-multiplatform")
 }
 ```
 
@@ -20,9 +20,9 @@ All of these plugins already applied the `maven publish`. So you can focus on yo
 #### Usage
 ```kotlin
 plugins {
-  id("android-only-lib") // if you need to publish for android only
-  id("jvm-only-lib") // if you need to publish for jvm only
-  id("js-only-lib") // if you need to publish for js only
+  id("tz.co.asoft.gradle-plugin.android-only-lib") // if you need to publish for android only
+  id("tz.co.asoft.gradle-plugin.jvm-only-lib") // if you need to publish for jvm only
+  id("tz.co.asoft.gradle-plugin.js-only-lib") // if you need to publish for js only
 }
 ```
 
@@ -35,21 +35,15 @@ A bunch of methods are also available
 
 ### `fun RepositoryHandler.publicRepos()`
 
+Adds the repositories below
 ```kotlin
-fun RepositoryHandler.publicRepos() {
     mavenLocal()
     google()
     jcenter()
     maven(url = "https://dl.bintray.com/kotlin/kotlin-js-wrappers")
     mavenCentral()
-}
 ```
 
 ### `fun Project.configurePublishing()`
 This one helps in adding default configurations for targets that do not have default publishing configs.
 You mostly won't need to use this as it is applied in all places required.
-
-### Target Java Version
-#### `fun KotlinAndroidTarget.targetJava(version: String = "1.8")`
-#### `fun KotlinJvmTarget.targetJava(version: String = "1.8")`
-#### `fun Project.targetJava(version: String = "1.8")`
