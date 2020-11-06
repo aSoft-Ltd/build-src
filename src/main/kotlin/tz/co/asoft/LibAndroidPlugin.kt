@@ -30,6 +30,5 @@ open class LibAndroidPlugin : Plugin<Project> {
             }
         }
         targetJava("1.8")
-        configurePublishing()
     }
 }

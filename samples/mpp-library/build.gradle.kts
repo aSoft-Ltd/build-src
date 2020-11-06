@@ -1,6 +1,6 @@
 plugins {
-    id("lib-multiplatform")
-    id("lib-android")
+    id("tz.co.asoft.gradle-plugin.lib-multiplatform")
+    id("tz.co.asoft.gradle-plugin.lib-android")
 }
 
 group = "tz.co.asoft"
@@ -24,8 +24,4 @@ kotlin {
             }
         }
     }
-}
-
-dependencies {
-
 }
