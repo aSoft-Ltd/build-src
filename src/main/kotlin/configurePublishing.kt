@@ -17,9 +17,11 @@ fun Project.configurePublishing() = configure<PublishingExtension> {
                 groupId = project.group.toString()
                 artifactId = project.name
                 version = project.version.toString()
-                listOf("JsSourcesJar", "kotlinSourcesJar", "androidSourcesJar").mapNotNull {
+                sequenceOf("JsSourcesJar", "kotlinSourcesJar", "androidSourcesJar").mapNotNull {
                     tasks.findByName(it) as? Zip
-                }.forEach { artifact(it) }
+                }.firstOrNull()?.let {
+                    artifact(it)
+                }
             }
         }
     }

@@ -2,6 +2,9 @@ import com.android.build.gradle.BaseExtension
 import org.gradle.api.JavaVersion
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 
+/**
+ * Configures the android plugin
+ */
 fun BaseExtension.configureAndroid(dir: String = "src/androidMain") {
 
     compileSdkVersion(28)

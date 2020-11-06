@@ -1,7 +1,12 @@
+package tz.co.asoft
+
+import publicRepos
+
 plugins {
     kotlin("jvm")
     id("java")
     id("java-gradle-plugin")
+    signing
 }
 
 repositories {

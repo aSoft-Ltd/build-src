@@ -1,6 +1,6 @@
 plugins {
-    id("mpp-lib")
-    id("android-lib")
+    id("tz.co.asoft.gradle-plugin.lib-multiplatform")
+    id("tz.co.asoft.gradle-plugin.lib-android")
 }
 
 group = "tz.co.asoft"
