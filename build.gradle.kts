@@ -1,6 +1,9 @@
 plugins {
     `kotlin-dsl`
+    id("com.gradle.plugin-publish") version "0.12.0"
     id("maven-publish")
+    `java-gradle-plugin`
+    signing
 }
 
 repositories {
@@ -13,11 +16,52 @@ repositories {
 object versions {
     const val kotlin = "1.3.72"
     const val gradle = "6.1.1"
+    const val asoft = "0.0.3"
     const val android_build_tools = "4.0.0"
 }
 
+gradlePlugin {
+    plugins {
+        val libOnlyJs by creating {
+            id = "tz.co.asoft.gradle-plugin.lib-only-js"
+            description = "Kotlin/JS Only Library"
+            implementationClass = "tz.co.asoft.LibOnlyJsPlugin"
+        }
+
+        val libOnlyJvm by creating {
+            id = "tz.co.asoft.gradle-plugin.lib-only-jvm"
+            description = "Kotlin/JVM Only Library"
+            implementationClass = "tz.co.asoft.LibOnlyJvmPlugin"
+        }
+
+        val libOnlyAndroid by creating {
+            id = "tz.co.asoft.gradle-plugin.lib-only-android"
+            description = "Kotlin/Android Only Library"
+            implementationClass = "tz.co.asoft.LibOnlyAndroidPlugin"
+        }
+
+        val libAndroid by creating {
+            id = "tz.co.asoft.gradle-plugin.lib-android"
+            description = "Library target for multiplatform"
+            implementationClass = "tz.co.asoft.LibAndroidPlugin"
+        }
+
+        val libMutiplatform by creating {
+            id = "tz.co.asoft.gradle-plugin.lib-multiplatform"
+            description = "For Multiplatform Libs"
+            implementationClass = "tz.co.asoft.LibMultiplatformPlugin"
+        }
+    }
+}
+
+pluginBundle {
+    website = "https://github.com/aSoft-Ltd/build-src"
+    vcsUrl = website
+    description = "Simple Plugins to Ease Development"
+}
+
 group = "tz.co.asoft"
-version = "1.0.0"
+version = versions.asoft
 
 defaultTasks("jar")
 
@@ -32,7 +76,10 @@ val javadocJar by tasks.creating(org.gradle.jvm.tasks.Jar::class) {
 
 artifacts {
     archives(sourcesJar)
-    archives(javadocJar)
+}
+
+signing {
+//    sign(configurations["archives"])
 }
 
 dependencies {
@@ -44,4 +91,15 @@ dependencies {
 tasks.getByName<Wrapper>("wrapper") {
     gradleVersion = versions.gradle
     distributionType = Wrapper.DistributionType.ALL
+}
+
+publishing {
+    repositories {
+        maven("https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            credentials {
+                username = "aJokZ8xl"
+                password = "ViPpTadoL88Pnl5H+zf9aJl3yFRtGgyPzFoGLCoGe/8M"
+            }
+        }
+    }
 }

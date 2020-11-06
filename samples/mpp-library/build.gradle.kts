@@ -1,6 +1,6 @@
 plugins {
-    id("mpp-lib")
-    id("android-lib")
+    id("lib-multiplatform")
+    id("lib-android")
 }
 
 group = "tz.co.asoft"
@@ -24,4 +24,8 @@ kotlin {
             }
         }
     }
+}
+
+dependencies {
+
 }

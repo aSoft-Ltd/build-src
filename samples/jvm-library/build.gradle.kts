@@ -1,5 +1,5 @@
 plugins {
-    id("jvm-only-lib")
+    id("lib-only-jvm")
 }
 
 group = "tz.co.asoft"

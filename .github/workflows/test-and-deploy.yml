@@ -26,7 +26,7 @@ jobs:
       - name: Building samples/android-library
         run: |
           chmod +x ./gradlew
-          ./gradlew build
+          ./gradlew publishToMavenLocal
         working-directory: ./samples/android-library
 
   build-samples-js-library:
@@ -48,7 +48,7 @@ jobs:
       - name: Building samples/js-library
         run: |
           chmod +x ./gradlew
-          ./gradlew build
+          ./gradlew publishToMavenLocal
         working-directory: ./samples/js-library
 
   build-samples-jvm-library:
@@ -70,7 +70,7 @@ jobs:
       - name: Building samples/jvm-library
         run: |
           chmod +x ./gradlew
-          ./gradlew build
+          ./gradlew publishToMavenLocal
         working-directory: ./samples/jvm-library
 
   build-samples-mpp-library:
@@ -92,5 +92,5 @@ jobs:
       - name: Building samples/mpp-library
         run: |
           chmod +x ./gradlew
-          ./gradlew build
+          ./gradlew publishToMavenLocal
         working-directory: ./samples/mpp-library

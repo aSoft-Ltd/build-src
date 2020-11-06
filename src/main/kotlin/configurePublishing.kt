@@ -19,7 +19,10 @@ fun Project.configurePublishing() = configure<PublishingExtension> {
                 version = project.version.toString()
                 listOf("JsSourcesJar", "kotlinSourcesJar", "androidSourcesJar").mapNotNull {
                     tasks.findByName(it) as? Zip
-                }.forEach { artifact(it) }
+                }.firstOrNull()?.let {
+                    println(it.name)
+                    artifact(it)
+                }
             }
         }
     }
