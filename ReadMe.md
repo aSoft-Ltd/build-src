@@ -27,8 +27,8 @@ plugins {
 ```
 
 ### lib-android
-If you need to target android libs in your `mpp-lib`. You should add `id("android-lib")` below the `mpp-lib` plugin.
-Note: Do not confuse this with the `android-only-lib`
+If you need to target android libs in your `lib-multiplatform`. You should add `id("lib-android")` below the `lib-multiplatform` plugin.
+Note: Do not confuse this with the `lib-android-only`
 
 ## Useful Methods
 A bunch of methods are also available
