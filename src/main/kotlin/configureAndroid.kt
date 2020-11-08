@@ -3,7 +3,7 @@ import org.gradle.api.JavaVersion
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 
 /**
- * Configures the android plugin
+ * Configures the android plugin - (both application and library)
  */
 fun BaseExtension.configureAndroid(dir: String = "src/androidMain") {
 
