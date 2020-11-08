@@ -73,7 +73,7 @@ jobs:
           ./gradlew publishToMavenLocal
         working-directory: ./samples/jvm-library
 
-  build-samples-mpp-library:
+  build-samples-multiplatform-library:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -89,8 +89,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Building samples/mpp-library
+      - name: Building samples/multiplatform-library
         run: |
           chmod +x ./gradlew
           ./gradlew publishToMavenLocal
-        working-directory: ./samples/mpp-library
+        working-directory: ./samples/multiplatform-library

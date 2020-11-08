@@ -6,7 +6,6 @@ plugins {
 group = "tz.co.asoft"
 version = "0.0.1"
 
-
 kotlin {
     android {
         targetJava("1.8")
