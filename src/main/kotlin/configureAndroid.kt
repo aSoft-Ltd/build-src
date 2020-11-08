@@ -36,7 +36,7 @@ fun BaseExtension.configureAndroid(dir: String = "src/androidMain") {
         }
 
         getByName("debug") {
-            matchingFallbacks = listOf("release")
+            setMatchingFallbacks("release")
         }
     }
 

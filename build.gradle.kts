@@ -14,10 +14,10 @@ repositories {
 }
 
 object versions {
-    const val kotlin = "1.3.72"
-    const val gradle = "6.1.1"
-    const val asoft = "0.0.3"
-    const val android_build_tools = "4.0.0"
+    const val kotlin = "1.4.10"
+    const val gradle = "6.7"
+    const val asoft = "0.0.4"
+    const val android_build_tools = "4.1.0"
 }
 
 gradlePlugin {
