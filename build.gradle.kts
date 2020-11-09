@@ -63,7 +63,7 @@ gradlePlugin {
 pluginBundle {
     website = "https://github.com/aSoft-Ltd/build-src"
     vcsUrl = website
-    description = "Simple Plugins to Ease Development"
+    description = "Simple Plugins to Ease Library Development"
 }
 
 group = "tz.co.asoft"
