@@ -22,6 +22,12 @@ object versions {
 
 gradlePlugin {
     plugins {
+        val gradlePluginMaker by creating {
+            id = "tz.co.asoft.gradle-plugin.maker"
+            description = "A gradle plugin that easises in creating gradle plugins"
+            implementationClass = "tz.co.asoft.GradlePluginMaker"
+        }
+
         val libOnlyJs by creating {
             id = "tz.co.asoft.gradle-plugin.lib-only-js"
             description = "Kotlin/JS Only Library"
