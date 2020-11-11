@@ -19,10 +19,10 @@ open class LibOnlyJsPlugin : Plugin<Project> {
         setupPlugins()
         repositories { publicRepos() }
         configure<KotlinJsProjectExtension> {
-            target {
+            js {
+                browser {}
                 useCommonJs()
             }
         }
-        configurePublishing()
     }
 }

@@ -53,5 +53,6 @@ fun BaseExtension.configureAndroid(dir: String = "src/androidMain") {
 fun KotlinAndroidTarget.targetJava(version: String = "1.8") = compilations.all {
     kotlinOptions {
         jvmTarget = "1.8"
+        useIR = true
     }
 }

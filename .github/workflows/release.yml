@@ -1,0 +1,121 @@
+name: Build, Test & Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-samples-android-library:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Cache Gradle
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Building samples/android-library
+        run: |
+          chmod +x ./gradlew
+          ./gradlew publishToMavenLocal
+        working-directory: ./samples/android-library
+
+  build-samples-js-library:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Cache Gradle
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Building samples/js-library
+        run: |
+          chmod +x ./gradlew
+          ./gradlew publishToMavenLocal
+        working-directory: ./samples/js-library
+
+  build-samples-jvm-library:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Cache Gradle
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Building samples/jvm-library
+        run: |
+          chmod +x ./gradlew
+          ./gradlew publishToMavenLocal
+        working-directory: ./samples/jvm-library
+
+  build-samples-multiplatform-library:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Cache Gradle
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Building samples/multiplatform-library
+        run: |
+          chmod +x ./gradlew
+          ./gradlew publishToMavenLocal
+        working-directory: ./samples/multiplatform-library
+
+  publish-to-gradle-plugin-portal:
+    runs-on: ubuntu-latest
+    needs: [build-samples-android-library,build-samples-js-library,build-samples-jvm-library,build-samples-multiplatform-library]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Cache Gradle
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Setup plugin portal credentials
+          run: |
+            echo gradle.publish.key=${{ secrets.ASOFT_GRADLE_PLUGIN_PORTAL_KEY }} >> gradle.properties
+            echo gradle.publish.secret=${{ secrets.ASOFT_GRADLE_PLUGIN_PORTAL_SECRET }} >> gradle.properties
+          working-directory: ~/.gradle
+      - name: Publishing plugins to gradle plugin portal
+        run: |
+          chmod +x ./gradlew
+          ./gradlew publishPlugins
+        working-directory: .

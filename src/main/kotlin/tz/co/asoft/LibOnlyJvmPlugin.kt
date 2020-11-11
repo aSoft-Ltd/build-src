@@ -18,6 +18,5 @@ open class LibOnlyJvmPlugin : Plugin<Project> {
         applyPlugins()
         repositories { publicRepos() }
         targetJava("1.8")
-        configurePublishing()
     }
 }
