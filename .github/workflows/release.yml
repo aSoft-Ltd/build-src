@@ -110,10 +110,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Setup plugin portal credentials
-          run: |
-            echo gradle.publish.key=${{ secrets.ASOFT_GRADLE_PLUGIN_PORTAL_KEY }} >> gradle.properties
-            echo gradle.publish.secret=${{ secrets.ASOFT_GRADLE_PLUGIN_PORTAL_SECRET }} >> gradle.properties
-          working-directory: ~/.gradle
+        run: |
+          echo gradle.publish.key=${{ secrets.ASOFT_GRADLE_PLUGIN_PORTAL_KEY }} >> gradle.properties
+          echo gradle.publish.secret=${{ secrets.ASOFT_GRADLE_PLUGIN_PORTAL_SECRET }} >> gradle.properties
+        working-directory: ~/.gradle
       - name: Publishing plugins to gradle plugin portal
         run: |
           chmod +x ./gradlew
