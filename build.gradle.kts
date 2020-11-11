@@ -14,7 +14,7 @@ repositories {
 object versions {
     const val kotlin = "1.4.10"
     const val gradle = "6.7"
-    const val asoft = "0.0.4"
+    const val asoft = "0.0.5"
     const val android_build_tools = "4.1.0"
 }
 
