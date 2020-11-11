@@ -9,7 +9,7 @@ Adds the `kotlin("multiplatform")` plugin and `maven-central` to help you write 
 #### Usage
 ```kotlin
 plugins {
-  id("tz.co.asoft.gradle-plugin.lib-multiplatform")
+  id("tz.co.asoft.lib.multiplatform")
 }
 ```
 
@@ -20,15 +20,15 @@ All of these plugins already applied the `maven publish`. So you can focus on yo
 #### Usage
 ```kotlin
 plugins {
-  id("tz.co.asoft.gradle-plugin.lib-only-android") // if you need to publish for android only
-  id("tz.co.asoft.gradle-plugin.lib-only-jvm") // if you need to publish for jvm only
-  id("tz.co.asoft.gradle-plugin.lib-only-js") // if you need to publish for js only
+  id("tz.co.asoft.lib.only.android") // if you need to publish for android only
+  id("tz.co.asoft.lib.only.jvm") // if you need to publish for jvm only
+  id("tz.co.asoft.lib.only.js") // if you need to publish for js only
 }
 ```
 
 ### lib-android
-If you need to target android libs in your `lib-multiplatform`. You should add `id("lib-android")` below the `lib-multiplatform` plugin.
-Note: Do not confuse this with the `lib-android-only`
+If you need to target android libs in your `lib.multiplatform`. You should add `id("tz.co.asoft.lib.android")` below the `lib.multiplatform` plugin.
+Note: Do not confuse this with the `lib.android.only`
 
 ## Useful Methods
 A bunch of methods are also available
