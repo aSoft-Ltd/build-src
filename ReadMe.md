@@ -15,7 +15,7 @@ plugins {
 
 ### lib-only-[android|jvm|js]
 If you wan't to create a platform specific platform library, these will help you.
-All of these plugins already applied the `maven publish`. So you can focus on your code
+All of these plugins already applied the `maven-publish`. So you can focus on your code
 
 #### Usage
 ```kotlin
