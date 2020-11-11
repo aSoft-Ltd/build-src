@@ -1,20 +1,14 @@
 plugins {
-    id("tz.co.asoft.lib.multiplatform")
-    id("tz.co.asoft.lib.android")
+    id("com.android.library") version "4.1.0"
+    kotlin("multiplatform") version "1.4.10"
+    id("tz.co.asoft.library")
 }
 
 group = "tz.co.asoft"
 version = "0.0.1"
 
 kotlin {
-    android {
-        targetJava("1.8")
-        publishLibraryVariants("release")
-    }
-
-    jvm { targetJava("1.8") }
-
-    js { useCommonJs() }
+    universalLib()
 
     sourceSets {
         val commonMain by getting {

@@ -26,34 +26,10 @@ gradlePlugin {
             implementationClass = "tz.co.asoft.GradlePluginMaker"
         }
 
-        val libOnlyJs by creating {
-            id = "tz.co.asoft.lib.only.js"
-            description = "Kotlin/JS Only Library"
-            implementationClass = "tz.co.asoft.LibOnlyJsPlugin"
-        }
-
-        val libOnlyJvm by creating {
-            id = "tz.co.asoft.lib.only.jvm"
-            description = "Kotlin/JVM Only Library"
-            implementationClass = "tz.co.asoft.LibOnlyJvmPlugin"
-        }
-
-        val libOnlyAndroid by creating {
-            id = "tz.co.asoft.lib.only.android"
-            description = "Kotlin/Android Only Library"
-            implementationClass = "tz.co.asoft.LibOnlyAndroidPlugin"
-        }
-
-        val libAndroid by creating {
-            id = "tz.co.asoft.lib.android"
-            description = "Library target for multiplatform"
-            implementationClass = "tz.co.asoft.LibAndroidPlugin"
-        }
-
-        val libMultiplatform by creating {
-            id = "tz.co.asoft.lib.multiplatform"
-            description = "For Multiplatform Libs"
-            implementationClass = "tz.co.asoft.LibMultiplatformPlugin"
+        val library by creating {
+            id = "tz.co.asoft.library"
+            description = "A kotlin library plugin"
+            implementationClass = "tz.co.asoft.LibraryPlugin"
         }
     }
 }
@@ -69,29 +45,9 @@ pluginBundle {
             tags = listOf("kotlin")
         }
 
-        val libOnlyJs by getting {
-            displayName = "Js Only Library"
-            tags = listOf("kotlin", "js")
-        }
-
-        val libOnlyJvm by getting {
-            displayName = "JVM Only Library"
-            tags = listOf("kotlin", "jvm")
-        }
-
-        val libOnlyAndroid by getting {
-            displayName = "Android Only Library"
-            tags = listOf("kotlin", "android")
-        }
-
-        val libAndroid by getting {
-            displayName = "Android Multiplatform Target"
-            tags = listOf("kotlin", "multiplatform", "android")
-        }
-
-        val libMultiplatform by getting {
-            displayName = "Kotlin Multiplatform Plugin"
-            tags = listOf("kotlin", "multiplatform")
+        val library by getting {
+            displayName = "A Kotlin Library Plugin"
+            tags = listOf("kotlin", "library")
         }
     }
 }

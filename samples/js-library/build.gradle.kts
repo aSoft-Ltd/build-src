@@ -1,5 +1,6 @@
 plugins {
-    id("tz.co.asoft.lib.only.js")
+    kotlin("js") version "1.4.10"
+    id("tz.co.asoft.library")
 }
 
 group = "tz.co.asoft"
