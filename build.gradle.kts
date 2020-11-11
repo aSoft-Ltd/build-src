@@ -21,37 +21,37 @@ object versions {
 gradlePlugin {
     plugins {
         val gradlePluginMaker by creating {
-            id = "tz.co.asoft.gradle-plugin.maker"
+            id = "tz.co.asoft.plugin.maker"
             description = "A gradle plugin that easises in creating gradle plugins"
             implementationClass = "tz.co.asoft.GradlePluginMaker"
         }
 
         val libOnlyJs by creating {
-            id = "tz.co.asoft.gradle-plugin.lib-only-js"
+            id = "tz.co.asoft.lib.only.js"
             description = "Kotlin/JS Only Library"
             implementationClass = "tz.co.asoft.LibOnlyJsPlugin"
         }
 
         val libOnlyJvm by creating {
-            id = "tz.co.asoft.gradle-plugin.lib-only-jvm"
+            id = "tz.co.asoft.lib.only.jvm"
             description = "Kotlin/JVM Only Library"
             implementationClass = "tz.co.asoft.LibOnlyJvmPlugin"
         }
 
         val libOnlyAndroid by creating {
-            id = "tz.co.asoft.gradle-plugin.lib-only-android"
+            id = "tz.co.asoft.lib.only.android"
             description = "Kotlin/Android Only Library"
             implementationClass = "tz.co.asoft.LibOnlyAndroidPlugin"
         }
 
         val libAndroid by creating {
-            id = "tz.co.asoft.gradle-plugin.lib-android"
+            id = "tz.co.asoft.lib.android"
             description = "Library target for multiplatform"
             implementationClass = "tz.co.asoft.LibAndroidPlugin"
         }
 
         val libMultiplatform by creating {
-            id = "tz.co.asoft.gradle-plugin.lib-multiplatform"
+            id = "tz.co.asoft.lib.multiplatform"
             description = "For Multiplatform Libs"
             implementationClass = "tz.co.asoft.LibMultiplatformPlugin"
         }

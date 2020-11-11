@@ -1,5 +1,5 @@
 plugins {
-    id("tz.co.asoft.gradle-plugin.lib-only-android")
+    id("tz.co.asoft.lib.only.android")
 }
 
 group = "tz.co.asoft"
