@@ -25,13 +25,7 @@ open class LibOnlyAndroidPlugin : Plugin<Project> {
         repositories { publicRepos() }
         configure<LibraryExtension> {
             configureAndroid(dir = "src/main")
-
-            project.tasks.create("androidSourcesJar", Jar::class.java) {
-                archiveClassifier.value("sources")
-                from(sourceSets["main"].java.srcDirs)
-            }
         }
         targetJava("1.8")
-        configurePublishing()
     }
 }

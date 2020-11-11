@@ -1,9 +1,7 @@
 plugins {
     `kotlin-dsl`
-    id("com.gradle.plugin-publish") version "0.12.0"
-    id("maven-publish")
     `java-gradle-plugin`
-    signing
+    id("com.gradle.plugin-publish") version "0.12.0"
 }
 
 repositories {
@@ -84,10 +82,6 @@ artifacts {
     archives(sourcesJar)
 }
 
-signing {
-//    sign(configurations["archives"])
-}
-
 dependencies {
     api("com.android.tools.build:gradle:${versions.android_build_tools}")
     api("org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}")
@@ -97,15 +91,4 @@ dependencies {
 tasks.getByName<Wrapper>("wrapper") {
     gradleVersion = versions.gradle
     distributionType = Wrapper.DistributionType.ALL
-}
-
-publishing {
-    repositories {
-        maven("https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-            credentials {
-                username = "aJokZ8xl"
-                password = "ViPpTadoL88Pnl5H+zf9aJl3yFRtGgyPzFoGLCoGe/8M"
-            }
-        }
-    }
 }
