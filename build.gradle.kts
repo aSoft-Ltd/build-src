@@ -50,7 +50,7 @@ gradlePlugin {
             implementationClass = "tz.co.asoft.LibAndroidPlugin"
         }
 
-        val libMutiplatform by creating {
+        val libMultiplatform by creating {
             id = "tz.co.asoft.gradle-plugin.lib-multiplatform"
             description = "For Multiplatform Libs"
             implementationClass = "tz.co.asoft.LibMultiplatformPlugin"
@@ -62,6 +62,38 @@ pluginBundle {
     website = "https://github.com/aSoft-Ltd/build-src"
     vcsUrl = website
     description = "Simple Plugins to Ease Library Development"
+
+    plugins {
+        val gradlePluginMaker by getting {
+            displayName = "Gradle Plugin Maker"
+            tags = listOf("kotlin")
+        }
+
+        val libOnlyJs by getting {
+            displayName = "Js Only Library"
+            tags = listOf("kotlin", "js")
+        }
+
+        val libOnlyJvm by getting {
+            displayName = "JVM Only Library"
+            tags = listOf("kotlin", "jvm")
+        }
+
+        val libOnlyAndroid by getting {
+            displayName = "Android Only Library"
+            tags = listOf("kotlin", "android")
+        }
+
+        val libAndroid by getting {
+            displayName = "Android Multiplatform Target"
+            tags = listOf("kotlin", "multiplatform", "android")
+        }
+
+        val libMultiplatform by getting {
+            displayName = "Kotlin Multiplatform Plugin"
+            tags = listOf("kotlin", "multiplatform")
+        }
+    }
 }
 
 group = "tz.co.asoft"
