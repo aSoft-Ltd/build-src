@@ -1,5 +1,7 @@
 plugins {
-    id("tz.co.asoft.lib.only.android")
+    id("com.android.library") version "4.1.0"
+    kotlin("android") version "1.4.10"
+    id("tz.co.asoft.library")
 }
 
 group = "tz.co.asoft"
