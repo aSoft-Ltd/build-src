@@ -15,4 +15,4 @@ plugins {
     id("tz.co.asoft.library")
 }
 ```
-After that you can just run `./gradlew publishPlugins` and you are all set
+After that you can just run `./gradlew publish` and you are all set
