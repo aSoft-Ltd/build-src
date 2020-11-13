@@ -77,8 +77,3 @@ dependencies {
     api("org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}")
     api("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:${versions.nexus_staging}")
 }
-
-tasks.getByName<Wrapper>("wrapper") {
-    gradleVersion = versions.gradle
-    distributionType = Wrapper.DistributionType.ALL
-}
