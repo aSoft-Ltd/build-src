@@ -11,7 +11,7 @@ and authoring gradle plugins. Supports
 Configuring a library becomes as easy as just, and all publications will be set
 ```kotlin
 plugins {                                    
-    kotlin("js") // [kotlin("jvm"),kotlin("multiplatform"),kotlin("android")]
+    kotlin("js") // [kotlin("jvm")|kotlin("multiplatform")|kotlin("android")|kotlin("js)]
     id("tz.co.asoft.library")
 }
 ```
