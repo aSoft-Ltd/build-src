@@ -12,10 +12,11 @@ repositories {
 }
 
 object versions {
-    const val kotlin = "1.4.10"
-    const val gradle = "6.7"
-    const val asoft = "0.0.6"
-    const val android_build_tools = "4.1.0"
+    val kotlin = "1.4.10"
+    val gradle = "6.7"
+    val asoft = "0.0.7"
+    val android_build_tools = "4.1.0"
+    val nexus_staging = "0.22.0"
 }
 
 gradlePlugin {
@@ -74,6 +75,7 @@ dependencies {
     api("com.android.tools.build:gradle:${versions.android_build_tools}")
     api("org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}")
     api("org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}")
+    api("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:${versions.nexus_staging}")
 }
 
 tasks.getByName<Wrapper>("wrapper") {
