@@ -14,7 +14,7 @@ repositories {
 object versions {
     val kotlin = "1.4.10"
     val gradle = "6.7"
-    val asoft = "0.0.7"
+    val asoft_build_src = "1.0.0"
     val android_build_tools = "4.1.0"
     val nexus_staging = "0.22.0"
 }
@@ -54,7 +54,7 @@ pluginBundle {
 }
 
 group = "tz.co.asoft"
-version = versions.asoft
+version = versions.asoft_build_src
 
 defaultTasks("jar")
 
@@ -76,9 +76,4 @@ dependencies {
     api("org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}")
     api("org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}")
     api("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:${versions.nexus_staging}")
-}
-
-tasks.getByName<Wrapper>("wrapper") {
-    gradleVersion = versions.gradle
-    distributionType = Wrapper.DistributionType.ALL
 }

@@ -1,62 +1,71 @@
+import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.TaskProvider
+import org.gradle.api.tasks.bundling.Zip
 import org.gradle.api.tasks.javadoc.Javadoc
 import org.gradle.external.javadoc.StandardJavadocDocletOptions
 import org.gradle.jvm.tasks.Jar
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.get
-import org.gradle.kotlin.dsl.withType
+import org.gradle.kotlin.dsl.*
+import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
 import java.io.File
 
 fun Project.configurePublishing(config: PublishingExtension.() -> Unit) {
-    val android = extensions.findByType(com.android.build.gradle.BaseExtension::class.java)
+    val android = extensions.findByType<BaseExtension>()
+    val js = extensions.findByType<KotlinJsProjectExtension>()
 
     /**
      * Javadoc
      */
     var javadocTask = tasks.findByName("javadoc") as Javadoc?
-    var javadocJarTaskProvider: TaskProvider<Jar>? = null
 
     if (javadocTask == null && android != null) {
         // create the Android javadoc if needed
-        javadocTask = tasks.create("javadoc", Javadoc::class.java) {
+        javadocTask = tasks.create<Javadoc>("javadoc") {
             source = android.sourceSets["main"].java.getSourceFiles()
             classpath += project.files(android.bootClasspath.joinToString(File.pathSeparator))
 
-            (android as? com.android.build.gradle.LibraryExtension)?.libraryVariants?.configureEach {
+            (android as? LibraryExtension)?.libraryVariants?.configureEach {
                 if (name != "release") {
                     return@configureEach
                 }
                 classpath += getCompileClasspath(null)
             }
         }
+    } else if (javadocTask == null) {
+        javadocTask = tasks.create<Javadoc>("javadoc")
     }
 
-    javadocJarTaskProvider = tasks.register("javadocJar", Jar::class.java) {
+    val javadocJarTaskProvider: TaskProvider<Jar> = tasks.register<Jar>("javadocJar") {
         archiveClassifier.set("javadoc")
-        if (javadocTask != null) {
-            dependsOn(javadocTask)
-            from(javadocTask.destinationDir)
-        }
+        dependsOn(javadocTask)
+        from(javadocTask.destinationDir)
     }
 
     val javaPluginConvention = project.convention.findPlugin(JavaPluginConvention::class.java)
-    val sourcesJarTaskProvider = tasks.register("sourcesJar", Jar::class.java) {
+    val sourcesJarTaskProvider = tasks.register<Jar>("sourcesJar") {
         archiveClassifier.set("sources")
         when {
-            javaPluginConvention != null && android == null -> {
+            javaPluginConvention != null && javaPluginConvention.sourceSets.isNotEmpty() && android == null -> {
                 from(javaPluginConvention.sourceSets["main"].allSource)
             }
+
             android != null -> {
                 from(android.sourceSets["main"].java.getSourceFiles())
+            }
+
+            js != null -> {
+                val kotlin = extensions.findByType<KotlinJsProjectExtension>() ?: return@register
+                from(kotlin.sourceSets["main"].kotlin.srcDirs)
             }
         }
     }
 
-    tasks.withType(Javadoc::class.java) {
+    tasks.withType<Javadoc> {
         // TODO: fix the javadoc warnings
         (options as StandardJavadocDocletOptions).addStringOption("Xdoclint:none", "-quiet")
     }
@@ -83,9 +92,19 @@ fun Project.configurePublishing(config: PublishingExtension.() -> Unit) {
                     }
                 }
 
+                plugins.hasPlugin("org.jetbrains.kotlin.js") -> {
+                    create<MavenPublication>("main") {
+                        groupId = this@configurePublishing.group.toString()
+                        artifactId = this@configurePublishing.name
+                        version = this@configurePublishing.version.toString()
+                        from(components["kotlin"])
+                        artifact(javadocJarTaskProvider.get())
+                        artifact(sourcesJarTaskProvider.get())
+                    }
+                }
                 else -> {
-                    create("default", MavenPublication::class.java) {
-                        val javaComponent = components.findByName("java")
+                    create<MavenPublication>("main") {
+                        val javaComponent = components["kotlin"]
                         if (javaComponent != null) {
                             from(javaComponent)
                         } else if (android != null) {
@@ -93,13 +112,8 @@ fun Project.configurePublishing(config: PublishingExtension.() -> Unit) {
                                 from(components.findByName("release"))
                             }
                         }
-
                         artifact(javadocJarTaskProvider.get())
                         artifact(sourcesJarTaskProvider.get())
-
-                        pom {
-                            artifactId = null // findProperty("POM_ARTIFACT_ID") as String?
-                        }
                     }
                 }
             }

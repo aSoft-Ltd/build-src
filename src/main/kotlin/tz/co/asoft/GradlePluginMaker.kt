@@ -1,6 +1,5 @@
 package tz.co.asoft
 
-import applyKotlin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.jvm.tasks.Jar
@@ -11,7 +10,7 @@ import versions
 
 open class GradlePluginMaker : Plugin<Project> {
     private fun Project.applyPlugins() = with(plugins) {
-        applyKotlin("jvm")
+        apply("org.jetbrains.kotlin.jvm")
         apply("java-gradle-plugin")
         apply("org.gradle.signing")
     }

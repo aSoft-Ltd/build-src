@@ -3,9 +3,8 @@ plugins {
     id("tz.co.asoft.library")
 }
 
+val lib_version = "0.0.1"
 group = "tz.co.asoft"
-version = "0.0.1"
+version = lib_version
 
-dependencies {
-    implementation(kotlin("stdlib"))
-}
+configurePublishing {}

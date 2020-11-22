@@ -2,7 +2,11 @@ name: Build & Test
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ dev-master ]
+
+env:
+  ASOFT_MAVEN_PGP_PRIVATE_KEY: ${{ secrets.ASOFT_MAVEN_PGP_PRIVATE_KEY }}
+  ASOFT_MAVEN_PGP_PASSWORD: ${{ secrets.ASOFT_MAVEN_PGP_PASSWORD }}
 
 jobs:
   build-samples-android-library:
