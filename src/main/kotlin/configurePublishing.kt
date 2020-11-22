@@ -36,7 +36,7 @@ fun Project.configurePublishing(config: PublishingExtension.() -> Unit) {
                 classpath += getCompileClasspath(null)
             }
         }
-    } else {
+    } else if (javadocTask == null) {
         javadocTask = tasks.create<Javadoc>("javadoc")
     }
 
@@ -102,7 +102,6 @@ fun Project.configurePublishing(config: PublishingExtension.() -> Unit) {
                         artifact(sourcesJarTaskProvider.get())
                     }
                 }
-
                 else -> {
                     create<MavenPublication>("main") {
                         val javaComponent = components["kotlin"]
@@ -115,9 +114,6 @@ fun Project.configurePublishing(config: PublishingExtension.() -> Unit) {
                         }
                         artifact(javadocJarTaskProvider.get())
                         artifact(sourcesJarTaskProvider.get())
-                        pom {
-                            artifactId = null
-                        }
                     }
                 }
             }

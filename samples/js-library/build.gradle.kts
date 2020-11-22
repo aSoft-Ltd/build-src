@@ -7,6 +7,4 @@ val lib_version = "0.0.1"
 group = "tz.co.asoft"
 version = lib_version
 
-dependencies {
-    implementation(kotlin("stdlib"))
-}
+configurePublishing {}
