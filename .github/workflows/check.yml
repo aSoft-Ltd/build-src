@@ -73,6 +73,7 @@ jobs:
         run: |
           chmod +x ./gradlew
           ./gradlew publishToMavenLocal
+          ls ./build/localMaven/tz/co/asoft/js-library/0.0.1/ -l
         working-directory: ./private-samples/js-library
 
   build-samples-jvm-library:
